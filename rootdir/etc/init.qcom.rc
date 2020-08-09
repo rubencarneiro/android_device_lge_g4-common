@@ -696,9 +696,10 @@ service qti /system/vendor/bin/qti
     disabled
 
 service sensors /system/bin/sensors.qcom
-    class late_start
+    class main
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -1080,6 +1081,19 @@ service lge-sensor-sh /system/bin/sh /init.msm8992.sensor.sh
     oneshot
     seclabel u:r:sensors:s0
 # start sensor daemon as core class [END]
+
+service minimedia /system/bin/minimediaservice
+    class main
+    user media
+    group audio camera
+    ioprio rt 4
+#   hack to make recorded video playback work
+    setenv LD_PRELOAD /system/lib/libOmxVdec.so
+
+service miniafservice /system/bin/miniafservice
+    class core
+    user root
+    group audio    
 
 on property:gsm.version.baseband=""
     start baseband-sh
