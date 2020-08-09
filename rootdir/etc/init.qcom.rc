@@ -699,7 +699,7 @@ service sensors /system/bin/sensors.qcom
     class late_start
     user root
     group root
-    writepid /dev/cpuset/system-background/tasks
+#    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -961,10 +961,10 @@ on property:sys.boot_completed=1
     setprop sys.io.scheduler "bfq"
     write /dev/kmsg "Boot completed"
 
-service time_daemon /system/bin/time_daemon
-    class late_start
-    user root
-    group root
+#service time_daemon /system/bin/time_daemon
+#    class late_start
+#    user root
+#    group root
 
 service adsprpcd /system/bin/adsprpcd
    class main
