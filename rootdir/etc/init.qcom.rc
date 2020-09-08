@@ -1090,10 +1090,10 @@ service minimedia /system/bin/minimediaservice
 #   hack to make recorded video playback work
     setenv LD_PRELOAD /system/lib/libOmxVdec.so
 
-#service miniafservice /system/bin/miniafservice
-#    class core
-#    user root
-#    group audio    
+service miniafservice /system/bin/miniafservice
+    class core
+    user root
+    group audio    
 
 on property:gsm.version.baseband=""
     start baseband-sh
