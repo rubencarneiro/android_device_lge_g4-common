@@ -1083,3 +1083,10 @@ service lge-sensor-sh /system/bin/sh /init.msm8992.sensor.sh
 
 on property:gsm.version.baseband=""
     start baseband-sh
+    
+# Service minimedia
+service minimedia /system/bin/minimediaservice
+    class main
+    user media
+    group audio camera
+    ioprio rt 4
